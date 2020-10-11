@@ -1,7 +1,7 @@
 /*
  ============================================================================
  Name        : ch2_02_ptr_swap.c
- Author      : Leo
+ Author      : Leandro Medus
  Version     :
  Copyright   : MIT License
  Description : basic swapping example with pointers

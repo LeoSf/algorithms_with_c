@@ -32,8 +32,8 @@ int swap2(void *x, void *y, int size) {
 int main(void) {
 	puts("-- Void pointer example --");
 
-	int array_a[LEN] = {9,2,3};
-	int array_b[LEN] = {4,5,6};
+	int array_a[LEN] = {9, 2, 3};
+	int array_b[LEN] = {4, 5, 6};
 
 	array_a[0] = 1;
 
@@ -41,8 +41,11 @@ int main(void) {
 
 	printf("a[0]: %d - a[1]: %d - a[2]: %d\n", array_a[0], array_a[1], array_a[2]);
 
-	int result = swap2(&array_a, array_b, (int) LEN);
+	int len = (int) LEN * sizeof(int);
+	int result = swap2(&array_a, array_b, len);
+
 	printf("operation result: %d \n", result);
+	printf("Bytes copied: %d\n", len);
 
 	printf("a[0]: %d - a[1]: %d - a[2]: %d\n", array_a[0], array_a[1], array_a[2]);
 
