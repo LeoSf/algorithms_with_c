@@ -7,7 +7,9 @@ Leandro.D.Medus@uv.es
 
 ---
 
-## Ch2 
+Current notes based on the book "Mastering Algorithms with C" by Kyle Loudon.
+
+## Ch2. Pointer manipulation
 
 ### Aggregates and Pointer Arithmetic
 
@@ -40,3 +42,40 @@ int g(int a[][2]) {
     a[2][0] = 5;
     return 0;
 }
+
+### Cast
+
+Casts are especially important with generic pointers because generic pointers cannot
+be dereferenced without casting them to some other type.
+
+Function Pointers
+
+int (*match)(void *key1, void *key2);
+This declaration means that we can set match to point to any function that accepts
+two void pointers and returns an integer. For example, suppose match_int is a
+function that accepts two void pointers. Assuming the previous declaration, we could set match to
+point to this function by executing the following statement:
+match = match_int;
+assuming x, y, and retval have been declared as integers
+retval = match(&x, &y);
+
+## Ch3. Recursion
+27
+
+
+
+## Some basic reminders
+
+```c
+switch(grade)
+{
+    case 'A':
+        printf("Excellent\n");
+        break;
+    case 'B':
+        printf("Keep it up!\n\n");
+        break;
+    default:
+        printf("Invalid\n");
+}
+```
