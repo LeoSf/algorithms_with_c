@@ -20,9 +20,9 @@ int main(void )
 {
 
     int i;              /* counter iterator over rows */
-    int j;              /* counter iterator over rcolumns */
+    int j;              /* counter iterator over columns */
 
-    const int n = 3;	/* matrix dimmension */
+    const int n = 3;	/* matrix dimension */
 
     int a[n][n];
     int b[n][n];
@@ -33,7 +33,6 @@ int main(void )
 
     printf("\nDimension of the matrix: (%d x %d)", n, n);
 
-    printf("\nEnter the %d elements of the matrix: \n\n",n*n);
     for(i = 0; i < n; i++) // to iterate the rows
         for(j = 0; j < n; j++) // to iterate the columns
             a[i][j] = rand() % 10;
