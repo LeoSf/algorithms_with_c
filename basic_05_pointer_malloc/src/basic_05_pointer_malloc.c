@@ -49,6 +49,8 @@ int main(void)
         printf("%d  ",ptr[i]);    // ptr[i] is same as *(ptr + i)
     }
 
+    printf("\nThe sum of elements is: %d", sum);
+
     /*
         freeing memory of ptr allocated by malloc
         using the free() method
