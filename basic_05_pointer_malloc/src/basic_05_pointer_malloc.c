@@ -46,7 +46,7 @@ int main(void)
     printf("The elements of the array are: ");
     for(i = 0; i < n; i++)
     {
-        printf("%d  ",ptr[i]);    // ptr[i] is same as *(ptr + i)
+        printf("%d  ", ptr[i]);    // ptr[i] is same as *(ptr + i)
     }
 
     printf("\nThe sum of elements is: %d", sum);
