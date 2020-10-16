@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(void) {
 	puts("-- program -- \n"); /* prints -- program -- */
@@ -23,6 +24,7 @@ int main(void) {
 
 	printf("Original string is: \t\t%s \n", str);	/* printing the reverse string */
 
+	strcpy(str, "Not so new message from the source code.");
 
 	while(*sptr)	/* storing the ending address of str in sptr */
 	{
