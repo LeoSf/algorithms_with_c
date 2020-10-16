@@ -4,7 +4,12 @@
  Author      : Leandro Medus
  Version     :
  Copyright   : MIT license
- Description : Hello World in C, Ansi-style
+ Description : Pointer Comparison
+
+ In C language pointers can be compared if the two pointers are pointing to
+ the same array.
+ All relational operators can be used for pointer comparison, but a pointer
+ cannot Multiplied or Divided.
  ============================================================================
  */
 
