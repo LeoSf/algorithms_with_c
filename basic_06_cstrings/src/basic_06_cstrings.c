@@ -19,6 +19,8 @@
 void string_copy(void);
 /* strcmp example */
 void string_comparison(void);
+/* strrev example */
+void string_reverse(void);
 
 
 /**
@@ -30,6 +32,7 @@ int main(void) {
 
 	string_copy();
     string_comparison();
+    string_reverse();
 
 	return EXIT_SUCCESS;
 }
@@ -45,7 +48,7 @@ void string_copy(void)
 	char mj[100];
     char aj[100];
 
-	printf("------------------------------------------------------------------\n");
+	printf("\n------------------------------------------------------------------\n");
     printf("strcpy(destination, source): is a system defined method used to \ncopy the source string into the destination.\n");
 
     strcpy(aj, "Nuevo mensaje");
@@ -54,20 +57,21 @@ void string_copy(void)
 }
 
 /**
- * @brief Use case to compare strings using strcmp() function defined in the string.h library.
+ * @brief Use case to compare c-strings using strcmp() function defined in the string.h library.
  * 
  * strcmp(a, b) returns 0 if both the strings a and b are exactly same else returns -1.
  * It is case sensitive so 'ABC' and 'abc' are considered to be different strings. It can be used 
  * with with strrev() function(function to reverse a string) to check whether a given string is a 
  * Pallindrome or not.
  */
-void string_comparison(void){
+void string_comparison(void)
+{
     
     char aj1[100] = "Primer c-string";
     char aj2[100] = "Segundo c-string";
     int compare;
 
-    printf("------------------------------------------------------------------\n");
+    printf("\n------------------------------------------------------------------\n");
     printf("strcmp(a,b) returns : 0 if both the strings are exactly same and -1 otherwise.\n");
     printf("strcmp(a,b) is Case Sensitive.\n\n");
 
@@ -88,4 +92,29 @@ void string_comparison(void){
         printf("Both the strings are exactly same.\n");
     else
         printf("Both the strings are different.\n");
+}
+
+
+/**
+ * @brief Use case to reverse a c-string
+ *
+ * This function compare c-strings using the strrev() defined within the string.h library. It can be used
+ * to check if the string is pallindrome or not by using this function along with the strcmp() function.
+ */
+
+void string_reverse(void)
+{
+	
+    printf("\n------------------------------------------------------------------\n");
+	printf("strrev(string): Function to reverse the string and storing in the same string.\n");
+	
+    char aj[1000] = "testing a cstring as an input";
+    printf("Original cstring is: %s\n", aj);
+
+	/*
+		system defined function to reverse the string
+		and storing in the same string
+	*/
+	strrev(aj);
+	printf("Reverse of entered cstring is: %s\n", aj);
 }
