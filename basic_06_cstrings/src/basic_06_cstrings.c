@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include<string.h>    	/**< to use strcpy() function */
+#include<string.h>    	        /**< to use strcpy() function */
 
 /* strcpy example */
 void string_copy(void);
@@ -21,6 +21,8 @@ void string_copy(void);
 void string_comparison(void);
 /* strrev example */
 void string_reverse(void);
+/* basic method to remove whitespaces */
+void remove_whitespaces(void);
 
 
 /**
@@ -33,6 +35,7 @@ int main(void) {
 	string_copy();
     string_comparison();
     string_reverse();
+    remove_whitespaces();
 
 	return EXIT_SUCCESS;
 }
@@ -94,7 +97,6 @@ void string_comparison(void)
         printf("Both the strings are different.\n");
 }
 
-
 /**
  * @brief Use case to reverse a c-string
  *
@@ -117,4 +119,49 @@ void string_reverse(void)
 	*/
 	strrev(aj);
 	printf("Reverse of entered cstring is: %s\n", aj);
+}
+
+/**
+ * @brief Removing Whitespaces in a cstring
+ * 
+ * Basic method to remove whitespaces in a cstring
+ */
+void remove_whitespaces(void)
+{
+    printf("\n------------------------------------------------------------------\n");
+	printf("Removing Whitespaces in a cstring.\n");
+
+    char aj[1000] = "cstring with a lot of whitespaces to test"; 
+    char mj[1000];      /**< buffer */
+    
+    int i = 0;          /**< index for the original string */
+    int j = 0;          /**< index for the buffer */
+    int len;            /**< len of the input cstring*/
+
+    printf("Original cstring is: %s\n", aj);
+
+    len = strlen(aj);   // len stores the length of the input xstring
+    printf("Length of the original cstring is: %d\n", len);
+
+    while(aj[i] != '\0')    // till string doesn't terminate
+    {
+        if(aj[i] != ' ')  // if the char is not a white space
+        {
+            /* 
+                incrementing index j only when 
+                the char is not space
+            */
+            mj[j++] = aj[i];
+        }
+        /*
+            i is the index of the actual string and 
+            is incremented irrespective of the spaces
+        */
+        i++;
+    }
+    mj[j] = '\0';
+
+    printf("The modified cstring is: %s\n", mj);
+    len = strlen(mj);   // len stores the length of the input xstring
+    printf("Length of the modified cstring is: %d\n", len);
 }
