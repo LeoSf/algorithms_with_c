@@ -25,6 +25,9 @@ void string_reverse(void);
 void remove_whitespaces(void);
 /* basic example for console input */
 void console_input(void);
+/* example of difference between strlen and sizeof */
+void len_and_sizeof(void);
+
 
 
 /**
@@ -42,7 +45,8 @@ int main(void) {
         the console_input function is working but it is avoided to not interact with the console 
     */
     // console_input();
-    
+    len_and_sizeof();
+
 
 	return EXIT_SUCCESS;
 }
@@ -197,4 +201,26 @@ void console_input(void)
     length = strlen(a);
 
     printf("\nThe length of the input string is: %d\n", length);
+}
+
+/**
+ * @brief 
+ * 
+ */
+void len_and_sizeof(void)
+{
+    printf("\n------------------------------------------------------------------\n");
+	printf("-- Difference between strlen and size of ---\n");
+
+    char aj[] = "StringToTest";
+    int length1, length2;
+
+    length1 = sizeof(aj);
+    length2 = strlen(aj);
+
+    // need to put in backslash infront to print the quote symbol
+    printf("sizeof() of string \"%s\" returns %d and strlen() returns %d.\n", aj, length1, length2);
+    printf("sizeof() also considers \'\\0\' as a part of the string.\n");
+    printf("Hence, for a predefined string: sizeof() = strlen() + 1 \n");
+
 }
