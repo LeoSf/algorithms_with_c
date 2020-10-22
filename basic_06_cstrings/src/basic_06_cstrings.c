@@ -23,6 +23,8 @@ void string_comparison(void);
 void string_reverse(void);
 /* basic method to remove whitespaces */
 void remove_whitespaces(void);
+/* basic example for console input */
+void console_input(void);
 
 
 /**
@@ -36,6 +38,11 @@ int main(void) {
     string_comparison();
     string_reverse();
     remove_whitespaces();
+    /*
+        the console_input function is working but it is avoided to not interact with the console 
+    */
+    // console_input();
+    
 
 	return EXIT_SUCCESS;
 }
@@ -140,7 +147,7 @@ void remove_whitespaces(void)
 
     printf("Original cstring is: %s\n", aj);
 
-    len = strlen(aj);   // len stores the length of the input xstring
+    len = strlen(aj);   // len stores the length of the input cstring
     printf("Length of the original cstring is: %d\n", len);
 
     while(aj[i] != '\0')    // till string doesn't terminate
@@ -162,6 +169,32 @@ void remove_whitespaces(void)
     mj[j] = '\0';
 
     printf("The modified cstring is: %s\n", mj);
-    len = strlen(mj);   // len stores the length of the input xstring
+    len = strlen(mj);   // len stores the length of the input cstring
     printf("Length of the modified cstring is: %d\n", len);
+}
+
+/**
+ * @brief Basic example of console input using cstrings
+ * 
+ */
+void console_input(void)
+{
+    char a[100];
+    int length;
+    printf("\n------------------------------------------------------------------\n");
+	printf("Calculating the length of a cstring as a input from the console.\n");
+
+    printf("Enter a string you wish to calculate the length of :   ");
+    /*
+        to take a single string (including spaces) 
+        as input at a time
+    */
+    gets(a);
+    /*
+        Return the length of the string 
+        or the number of characters in the string
+    */
+    length = strlen(a);
+
+    printf("\nThe length of the input string is: %d\n", length);
 }
