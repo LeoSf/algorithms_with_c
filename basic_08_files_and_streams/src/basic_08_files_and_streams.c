@@ -12,15 +12,19 @@
 #include <stdlib.h>
 
 #include<dirent.h>
+#include<string.h>
 
 /* example: list files in the current*/
-void list_files_in_directory(void);
+void list_files_in_directory(char* path);
 
 int main(void) {
 	puts("-- Set of functions to test file and streams operations. --\n");
 
-	list_files_in_directory();
+	char path[] = "..";
+	list_files_in_directory(path);
 
+	strcpy(path, ".");
+	list_files_in_directory(path);
 
 	return EXIT_SUCCESS;
 }
@@ -28,14 +32,19 @@ int main(void) {
 /**
  * @brief Use case to list all the files in a directory
  * 
+ * @param path Relative or absolute path to the directory to be analyzed.
  */
-void list_files_in_directory(void)
+void list_files_in_directory(char* path)
 {
+
+	printf("\n------------------------------------------------------------------\n");
+    printf("List of files in the directory: %s\n", path);
+
     DIR *ptrFd;					/**< pointer to the file descriptor */
 
     struct dirent *dir;
 
-    ptrFd = opendir(".");
+    ptrFd = opendir(path);
 
     if (ptrFd)
     {
