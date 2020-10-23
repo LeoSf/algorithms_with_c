@@ -4,7 +4,7 @@
  Author      : Leandro Medus
  Version     : 1.0
  Copyright   : MIT license
- Description : Set of functions to test file and strems operations.
+ Description : Set of functions to test file and streams operations.
  ============================================================================
  */
 
@@ -14,7 +14,7 @@
 #include<dirent.h>
 #include<string.h>
 
-/* example: list files in the current*/
+/* example: list files in a specific path */
 void list_files_in_directory(char* path);
 
 int main(void) {
