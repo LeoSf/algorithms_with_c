@@ -18,21 +18,25 @@
 void list_files_in_directory(char* path);
 /* example to find the size of a file */
 void size_of_a_file(char* path);
-/*  */
+/* example to write a dummy text file */
+void write_a_text_file(char* path);
 /*  */
 /*  */
 
 int main(void) {
 	puts("-- Set of functions to test file and streams operations. --\n");
 
-	char path[] = "..";
-	list_files_in_directory(path);
+	char path[100] = "..";
+	// list_files_in_directory(path);
 
 	strcpy(path, ".");
 	list_files_in_directory(path);
 
 	strcpy(path, ".cproject");
 	size_of_a_file(path);
+
+	strcpy(path, ".//Debug//new_text_file.txt");
+	write_a_text_file(path);
 
 	return EXIT_SUCCESS;
 }
@@ -109,6 +113,65 @@ void size_of_a_file(char* path){
     printf("The size of given file is: %d bytes\n", size);
     fclose(fp);
 
+}
 
+/**
+ * @brief Example to write a dummy text file
+ * 
+ * @param path Relative or absolute path to the file to be created with some text.
+ * 
+ * *fp = FILE *fopen(const char *filename, const char *mode);
+ * 
+ * 		Here, *fp is the FILE pointer (FILE *fp), which will hold the reference to the opened
+ * 		(or created) file. 
+ * 
+ * 		filename is the name of the file to be opened and mode specifies the purpose of opening the 
+ * 		file. Mode can be of following types,
+ * 
+ * 		mode	description
+ * 		r		opens a text file in reading mode
+ * 		w		opens or create a text file in writing mode.
+ * 		a		opens a text file in append mode
+ * 		r+		opens a text file in both reading and writing mode
+ * 		w+		opens a text file in both reading and writing mode
+ * 		a+		opens a text file in both reading and writing mode
+ * 		rb		opens a binary file in reading mode
+ * 		wb		opens or create a binary file in writing mode
+ * 		ab		opens a binary file in append mode
+ * 		rb+		opens a binary file in both reading and writing mode
+ * 		wb+		opens a binary file in both reading and writing mode
+ * 		ab+		opens a binary file in both reading and writing mode
+ */
+void write_a_text_file(char* path)
+{
+	printf("\n------------------------------------------------------------------\n");
+    printf("Example: writing a text file.\n");
 
+	FILE *fptr;
+    char name[] = "Leandro";
+    int age = 60;
+    float salary = 1000;
+
+    /* open for writing */
+    fptr = fopen(path, "w");
+
+    if (fptr == NULL)
+    {
+        printf("File does not exist.\n");
+        return;
+    }
+	else
+    {	
+        printf("File opened: %s\n", path);
+    }
+
+	/*
+		data to write 
+	*/
+    fprintf(fptr, "Name  = %s\n", name);
+    fprintf(fptr, "Age  = %d\n", age);
+    fprintf(fptr, "Salary  = %.2f\n", salary);
+
+    fclose(fptr);
+	printf("File closed: %s\n", path);
 }
