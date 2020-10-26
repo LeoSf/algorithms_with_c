@@ -217,11 +217,10 @@ void read_and_write(char* path)
         {
             ch = fgetc(fp1);
             fputc(ch, fp2);
-            // fseek(fp1, cnt , SEEK_SET); // shifts the pointer to the previous character
-            // fseek(fp1, -2, SEEK_CUR); // shifts the pointer to the previous character
+            // fseek(fp1, cnt , SEEK_SET); // from the begining
+            // fseek(fp1, -1L, SEEK_CUR); // seek_cur not working
             fseek(fp1, -i-1, SEEK_END); // shifts the pointer to the previous character
 			i++;
-			// fseek(fp1, -2L, 1); // shifts the pointer to the previous character
             cnt--;
         }
         printf("\n**File copied successfully in reverse order**\n");
