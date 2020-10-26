@@ -20,7 +20,10 @@ void list_files_in_directory(char* path);
 void size_of_a_file(char* path);
 /* example to write a dummy text file */
 void write_a_text_file(char* path);
-/*  */
+/* example to read and write a file */
+void read_and_write(char* path);
+/* helper function to count the amount of characters in a file */
+long count_characters(FILE *f);
 /*  */
 
 int main(void) {
@@ -37,6 +40,9 @@ int main(void) {
 
 	strcpy(path, ".//Debug//new_text_file.txt");
 	write_a_text_file(path);
+
+	strcpy(path, ".//Debug//new_text_file.txt");
+	read_and_write(path);
 
 	return EXIT_SUCCESS;
 }
@@ -174,4 +180,80 @@ void write_a_text_file(char* path)
 
     fclose(fptr);
 	printf("File closed: %s\n", path);
+}
+
+/**
+ * @brief example to read and write a file
+ * 
+ * This program reverse the contents of a file.
+ * 
+ * @param path Relative or absolute path to the file to work with.
+ */
+void read_and_write(char* path)
+{
+	printf("\n------------------------------------------------------------------\n");
+    printf("Example: reverting the content of a file.\n");
+
+    long cnt;
+    char ch;
+    FILE *fp1, *fp2;
+
+	fp1 = fopen(path, "r");
+    if (fp1 != NULL)
+    {
+        printf("The FILE has been opened...\n");
+        fp2 = fopen("reverted_content.txt", "w");
+        cnt = count_characters(fp1);
+
+        /*
+            Make the pointer fp1 to point at the
+            last character of the file
+        */
+        fseek(fp1, -1L, 2);
+        printf("Number of characters to be copied %li\n", ftell(fp1));
+
+        while (cnt)
+        {
+            ch = fgetc(fp1);
+            fputc(ch, fp2);
+            fseek(fp1, cnt , SEEK_SET); // shifts the pointer to the previous character
+            // fseek(fp1, -2, SEEK_CUR); // shifts the pointer to the previous character
+            // fseek(fp1, -2L, 1); // shifts the pointer to the previous character
+            cnt--;
+        }
+        printf("\n**File copied successfully in reverse order**\n");
+    }
+    else
+    {
+        perror("Error occured\n");
+		return;
+    }
+    fclose(fp1);
+    fclose(fp2);
+}
+
+/**
+ * @brief Count the total number of characters in the file that *f points to
+ * 
+ * int fseek( std::FILE* stream, long offset, int origin );
+ * origin = {
+ * 		SEEK_SET (Beginning of file)
+ * 		SEEK_CUR (Current position of the file pointer)
+ * 		SEEK_END (End of file)
+ * }
+ * 
+ * @param f file pointer
+ * @return long number of characters in a text file
+ */
+long count_characters(FILE *f)
+{
+    fseek(f, -1L, SEEK_END);
+    /*
+        returns the position of the 
+        last element of the file
+    */
+    long last_pos = ftell(f);
+    last_pos++;
+
+    return last_pos;
 }
