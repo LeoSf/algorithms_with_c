@@ -195,6 +195,7 @@ void read_and_write(char* path)
     printf("Example: reverting the content of a file.\n");
 
     long cnt;
+	long i = 0;
     char ch;
     FILE *fp1, *fp2;
 
@@ -209,16 +210,18 @@ void read_and_write(char* path)
             Make the pointer fp1 to point at the
             last character of the file
         */
-        fseek(fp1, -1L, 2);
+        fseek(fp1, 0, 2);
         printf("Number of characters to be copied %li\n", ftell(fp1));
 
         while (cnt)
         {
             ch = fgetc(fp1);
             fputc(ch, fp2);
-            fseek(fp1, cnt , SEEK_SET); // shifts the pointer to the previous character
+            // fseek(fp1, cnt , SEEK_SET); // shifts the pointer to the previous character
             // fseek(fp1, -2, SEEK_CUR); // shifts the pointer to the previous character
-            // fseek(fp1, -2L, 1); // shifts the pointer to the previous character
+            fseek(fp1, -i-1, SEEK_END); // shifts the pointer to the previous character
+			i++;
+			// fseek(fp1, -2L, 1); // shifts the pointer to the previous character
             cnt--;
         }
         printf("\n**File copied successfully in reverse order**\n");
@@ -247,7 +250,8 @@ void read_and_write(char* path)
  */
 long count_characters(FILE *f)
 {
-    fseek(f, -1L, SEEK_END);
+    fseek(f, 0, SEEK_END);
+    // fseek(f, -1L, SEEK_END);
     /*
         returns the position of the 
         last element of the file
