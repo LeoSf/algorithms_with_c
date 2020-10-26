@@ -24,7 +24,8 @@ void write_a_text_file(char* path);
 void read_and_write(char* path);
 /* helper function to count the amount of characters in a file */
 long count_characters(FILE *f);
-/*  */
+/* example to copy the content from one file to another */
+void copy_content(char* source, char* desteny);
 
 int main(void) {
 	puts("-- Set of functions to test file and streams operations. --\n");
@@ -43,6 +44,10 @@ int main(void) {
 
 	strcpy(path, ".//Debug//new_text_file.txt");
 	read_and_write(path);
+
+	char path_source[] = ".//Debug//new_text_file.txt";
+	char path_desteny[] = ".//Debug//desteny_file.txt";
+	copy_content(path_source, path_desteny);
 
 	return EXIT_SUCCESS;
 }
@@ -259,4 +264,47 @@ long count_characters(FILE *f)
     last_pos++;
 
     return last_pos;
+}
+
+/**
+ * @brief example to copy the content from one file to another
+ * 
+ * @param source file with content
+ * @param desteny file in which content of source will be copied.
+ */
+void copy_content(char* source, char* desteny)
+{
+	printf("\n------------------------------------------------------------------\n");
+    printf("Example: copy the content of a file.\n");
+
+    FILE *fp1, *fp2;
+    char ch;
+    int pos;
+
+    if ((fp1 = fopen(source, "r")) == NULL)
+    {
+        printf("\nFile cannot be opened.");
+        return;
+    }
+    else
+    {
+        printf("\nFile opened for copy...\n ");
+    }
+    fp2 = fopen(desteny, "w");
+    
+	fseek(fp1, 0L, SEEK_END);   // File pointer at end of file
+    pos = ftell(fp1);
+    
+	fseek(fp1, 0L, SEEK_SET);   // File pointer set at start
+    
+	while (pos--)
+    {
+        ch = fgetc(fp1);    // Copying file character by character
+        fputc(ch, fp2);
+    }
+    
+	// fcloseall();
+	fclose(fp1);
+	fclose(fp2);
+	
 }
