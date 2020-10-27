@@ -14,6 +14,8 @@
 #include<dirent.h>
 #include<string.h>
 
+#define N_vector 5
+
 /* example: list files in a specific path */
 void list_files_in_directory(char* path);
 /* example to find the size of a file */
@@ -28,6 +30,10 @@ long count_characters(FILE *f);
 void copy_content(char* source, char* destination);
 /* example to read and write a file line to line */
 void write_and_read(char* path);
+/* example to write a binary file */
+void write_binary(char* path);
+
+
 
 int main(void) {
 	puts("-- Set of functions to test file and streams operations. --\n");
@@ -53,6 +59,10 @@ int main(void) {
 
 	strcpy(path, ".//Debug//new_text_file.txt");
 	write_and_read(path);
+
+	strcpy(path, ".//Debug//new_text_file.bin");
+	write_binary(path);
+
 
 	return EXIT_SUCCESS;
 }
@@ -329,7 +339,7 @@ void write_and_read(char* path)
 {
 	printf("\n------------------------------------------------------------------\n");
     printf("Example: copy the content of a file.\n");
-	
+
 	struct emp e;
 
     FILE *fp_out,*fp_in;
@@ -348,4 +358,52 @@ void write_and_read(char* path)
         printf("%s %d", e.name, e.age);
     }
     while(!feof(fp_in));
+
+	printf("\n");
 }
+
+/**
+ * @brief example to write and read in binary
+ * 
+ * fread() and fwrite() functions are used to read and write is a binary file.
+ * fwrite(	data-element-to-be-written, size_of_elements, number_of_elements, 
+ * 			pointer-to-file);
+ * 
+ * size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
+ * 
+ * Parameters
+ * 		ptr − This is the pointer to the array of elements to be written.
+ * 		size − This is the size in bytes of each element to be written.
+ * 		nmemb − This is the number of elements, each one with a size of size bytes.
+ * 		stream − This is the pointer to a FILE object that specifies an output stream.
+ * 
+ * @param path 
+ */
+void write_binary(char* path)
+{
+	printf("\n------------------------------------------------------------------\n");
+    printf("Example: write file in binary format\n");
+
+	// const char *mytext = "this is a sentence to test";   
+
+	long int vector[N_vector] = {1,2,3,4,5};
+
+	FILE *bfp = fopen(path, "wb");   
+
+	if (bfp) 
+	{
+		// fwrite(mytext, sizeof(char), strlen(mytext), bfp);  
+
+		/* little endian by default -- first LSB */   
+		fwrite(vector, sizeof(long int), sizeof(vector)/sizeof(long int), bfp);     
+
+		fclose(bfp);   
+		printf("File has been written successfully\n");
+	}
+	else
+	{
+		printf("Error opening the file\n");
+	}
+	
+}
+
