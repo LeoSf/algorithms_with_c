@@ -25,7 +25,7 @@ void read_and_write(char* path);
 /* helper function to count the amount of characters in a file */
 long count_characters(FILE *f);
 /* example to copy the content from one file to another */
-void copy_content(char* source, char* desteny);
+void copy_content(char* source, char* destination);
 
 int main(void) {
 	puts("-- Set of functions to test file and streams operations. --\n");
@@ -270,9 +270,9 @@ long count_characters(FILE *f)
  * @brief example to copy the content from one file to another
  * 
  * @param source file with content
- * @param desteny file in which content of source will be copied.
+ * @param destination file in which content of source will be copied.
  */
-void copy_content(char* source, char* desteny)
+void copy_content(char* source, char* destination)
 {
 	printf("\n------------------------------------------------------------------\n");
     printf("Example: copy the content of a file.\n");
@@ -290,7 +290,7 @@ void copy_content(char* source, char* desteny)
     {
         printf("\nFile opened for copy...\n ");
     }
-    fp2 = fopen(desteny, "w");
+    fp2 = fopen(destination, "w");
     
 	fseek(fp1, 0L, SEEK_END);   // File pointer at end of file
     pos = ftell(fp1);
@@ -303,8 +303,8 @@ void copy_content(char* source, char* desteny)
         fputc(ch, fp2);
     }
     
+	printf("**File copied successfully from origin to destination**\n");
 	// fcloseall();
 	fclose(fp1);
 	fclose(fp2);
-	
 }
