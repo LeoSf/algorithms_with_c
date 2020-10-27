@@ -32,6 +32,8 @@ void copy_content(char* source, char* destination);
 void write_and_read(char* path);
 /* example to write a binary file */
 void write_binary(char* path);
+/* example to read a binary file */
+void read_binary(char* path);
 
 
 
@@ -63,6 +65,7 @@ int main(void) {
 	strcpy(path, ".//Debug//new_text_file.bin");
 	write_binary(path);
 
+	read_binary(path);
 
 	return EXIT_SUCCESS;
 }
@@ -407,3 +410,49 @@ void write_binary(char* path)
 	
 }
 
+
+/**
+ * @brief example to read a binary file
+ * 
+ * The C library function size_t fread(void *ptr, size_t size, size_t nmemb, 
+ * FILE *stream) reads data from the given stream into the array pointed to, 
+ * by ptr.
+ * 
+ * size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
+ * 
+ * Parameters
+ * 		ptr − This is the pointer to the array of elements to be written.
+ * 		size − This is the size in bytes of each element to be written.
+ * 		nmemb − This is the number of elements, each one with a size of size bytes.
+ * 		stream − This is the pointer to a FILE object that specifies an output stream.
+ * 
+ * @param path 
+ */
+void read_binary(char* path)
+{
+	printf("\n------------------------------------------------------------------\n");
+    printf("Example: read a file in binary format\n");
+
+	int i;
+	FILE *fp;
+
+	long int buffer[N_vector];
+
+	/* Open file for both reading and writing */
+	fp = fopen(path, "rb");
+
+	/* Seek to the beginning of the file */
+	fseek(fp, 0, SEEK_SET);
+
+	/* Read and display data */
+	fread(buffer, sizeof(long int), N_vector, fp);
+	// printf("%li\n", buffer);
+
+	for(i = 0; i < N_vector; i++)
+        printf("%li ", buffer[i]);
+	
+	printf("\n");
+
+	fclose(fp);
+	
+}
