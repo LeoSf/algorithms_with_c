@@ -23,7 +23,7 @@ void size_of_a_file(char* path);
 /* example to write a dummy text file */
 void write_a_text_file(char* path);
 /* example to read and write a file */
-void read_and_write(char* path);
+void read_and_write(char* path_in, char* path_out);
 /* helper function to count the amount of characters in a file */
 long count_characters(FILE *f);
 /* example to copy the content from one file to another */
@@ -41,6 +41,9 @@ int main(void) {
 	puts("-- Set of functions to test file and streams operations. --\n");
 
 	char path[100] = "..";
+	char path_source[100];
+	char path_destination[100];
+	
 	// list_files_in_directory(path);
 
 	strcpy(path, ".");
@@ -52,12 +55,13 @@ int main(void) {
 	strcpy(path, ".//Debug//new_text_file.txt");
 	write_a_text_file(path);
 
-	strcpy(path, ".//Debug//new_text_file.txt");
-	read_and_write(path);
+	strcpy(path_source, ".//Debug//new_text_file.txt");
+	strcpy(path_destination, ".//Debug//reverted_content.txt");
+	read_and_write(path_source, path_destination);
 
-	char path_source[] = ".//Debug//new_text_file.txt";
-	char path_desteny[] = ".//Debug//desteny_file.txt";
-	copy_content(path_source, path_desteny);
+	strcpy(path_source, ".//Debug//new_text_file.txt");
+	strcpy(path_destination, ".//Debug//destination_file.txt");
+	copy_content(path_source, path_destination);
 
 	strcpy(path, ".//Debug//new_text_file.txt");
 	write_and_read(path);
@@ -212,7 +216,7 @@ void write_a_text_file(char* path)
  * 
  * @param path Relative or absolute path to the file to work with.
  */
-void read_and_write(char* path)
+void read_and_write(char* path_in, char* path_out)
 {
 	printf("\n------------------------------------------------------------------\n");
     printf("Example: reverting the content of a file.\n");
@@ -222,11 +226,11 @@ void read_and_write(char* path)
     char ch;
     FILE *fp1, *fp2;
 
-	fp1 = fopen(path, "r");
+	fp1 = fopen(path_in, "r");
     if (fp1 != NULL)
     {
         printf("The FILE has been opened...\n");
-        fp2 = fopen("reverted_content.txt", "w");
+        fp2 = fopen(path_out, "w");
         cnt = count_characters(fp1);
 
         /*
