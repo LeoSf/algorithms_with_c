@@ -26,6 +26,8 @@ void read_and_write(char* path);
 long count_characters(FILE *f);
 /* example to copy the content from one file to another */
 void copy_content(char* source, char* destination);
+/* example to read and write a file line to line */
+void write_and_read(char* path);
 
 int main(void) {
 	puts("-- Set of functions to test file and streams operations. --\n");
@@ -48,6 +50,9 @@ int main(void) {
 	char path_source[] = ".//Debug//new_text_file.txt";
 	char path_desteny[] = ".//Debug//desteny_file.txt";
 	copy_content(path_source, path_desteny);
+
+	strcpy(path, ".//Debug//new_text_file.txt");
+	write_and_read(path);
 
 	return EXIT_SUCCESS;
 }
@@ -307,4 +312,40 @@ void copy_content(char* source, char* destination)
 	// fcloseall();
 	fclose(fp1);
 	fclose(fp2);
+}
+
+struct emp
+{
+    char name[10];
+    int age;
+};
+
+/**
+ * @brief example to read and write a file line to line
+ * 
+ * @param path 
+ */
+void write_and_read(char* path)
+{
+	printf("\n------------------------------------------------------------------\n");
+    printf("Example: copy the content of a file.\n");
+	
+	struct emp e;
+
+    FILE *fp_out,*fp_in;
+
+    fp_out = fopen(path, "w");
+    fp_in = fopen(path, "r");
+
+	strcpy(e.name, "Leandro");
+	e.age = 60;
+
+    fprintf(fp_out,"%s %d", e.name, e.age);
+    fclose(fp_out);
+    do
+    {
+        fscanf(fp_in,"%s %i", e.name, &e.age);
+        printf("%s %d", e.name, e.age);
+    }
+    while(!feof(fp_in));
 }
