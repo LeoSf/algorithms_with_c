@@ -380,6 +380,8 @@ void write_and_read(char* path)
  * 		nmemb − This is the number of elements, each one with a size of size bytes.
  * 		stream − This is the pointer to a FILE object that specifies an output stream.
  * 
+ * NOTE: content of the file can be checked with: https://www.onlinehexeditor.com
+ * 
  * @param path 
  */
 void write_binary(char* path)
@@ -425,6 +427,8 @@ void write_binary(char* path)
  * 		size − This is the size in bytes of each element to be written.
  * 		nmemb − This is the number of elements, each one with a size of size bytes.
  * 		stream − This is the pointer to a FILE object that specifies an output stream.
+ * 
+ * NOTE: content of the file can be checked with: https://www.onlinehexeditor.com
  * 
  * @param path 
  */
